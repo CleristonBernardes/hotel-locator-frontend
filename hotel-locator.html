@@ -1,0 +1,33 @@
+<html ng-app="HotelLocatorApp">
+    <head>
+        <script src="js/jquery-1.12.4.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/script.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <title>Find the closest hotel</title>
+
+
+    </head>
+    <body>
+        <div class="container" ng-controller="HotelController" style="padding-top:30px">
+            <div>
+                <p><a href="#" ng-click="searchHotels()">Find the nearest hotels</a></p>
+            </div>
+            {{found_location}}
+            {{lat}}
+            {{long}}
+        </div>
+
+        <script>
+
+            $(document).ready(function () {
+
+
+            });
+
+
+
+        </script>
+        <div id="demo"></div>
+    </body>
+</html>
