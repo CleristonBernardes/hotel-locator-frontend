@@ -9,25 +9,50 @@
 
     </head>
     <body>
-        <div class="container" ng-controller="HotelController" style="padding-top:30px">
-            <div>
-                <p><a href="#" ng-click="searchHotels()">Find the nearest hotels</a></p>
+        <div class="container" ng-controller="HotelController">
+            <div  style="padding-top:30px">
+                <p><a href="#" ng-show="found_location && !hotel_detail" ng-click="searchHotels()" style="margin-left:40%">Find the nearest hotels</a></p>
+                <p><a href="#" ng-show="hotel_detail" ng-click="cleanDetail()" style="margin-left:40%">Return</a></p>
             </div>
-            {{found_location}}
-            {{lat}}
-            {{long}}
+            <div ng-hide="hotel_detail" id="hotel" ng-repeat="hotel in hotel_list">
+                <!-- Each issue should be rendered with the following template -->
+                <div>
+                    <h3> <!-- If status === Unresolved -->
+                        <spam ng-click="searchDetails(hotel.id)" ng-bind="hotel.name"></spam>
+                    </h3>
+                    <p>{{hotel.name}} - {{hotel.rating}}</p>
+                    <hr />
+                </div>
+            </div>
+            <div ng-show="hotel_detail" id="hotel-detail">
+                <!-- Each issue should be rendered with the following template -->
+                <div>
+                    <h3> <!-- If status === Unresolved -->
+                        <spam ng-bind="hotel_detail.name"></spam>
+                    </h3>
+                    <p>
+                        Address: <spam ng-bind="hotel_detail.formatted_address"></spam></br>
+                        Number: <spam ng-bind="hotel_detail.formatted_phone_number"></spam></br>
+                        WebSite: <spam ng-bind="hotel_detail.website"></spam></br>
+                        KeyWords: <spam ng-repeat="type in hotel_detail.types" style="display:inline">{{type}} </spam></br>
+                        Reviews: <div ng-repeat="review in hotel_detail.reviews" style="float:left; width:100%;padding:1%">
+                          <div style="float:left; width:10%">
+                              <img src="{{review.profile_photo_url}}" />
+                          </div>
+                          <div style="float:left; width:90%">
+                              <spam>
+                                {{review.author_name || "anon"}}, rated {{review.rating}} - {{review.relative_time_description}}
+                              </spam>
+                              <spam ng-bind="review.text"></spam>
+                          </div>
+                          </br>
+                        </div>
+
+
+                    </p>
+                    <hr />
+                </div>
+            </div>
         </div>
-
-        <script>
-
-            $(document).ready(function () {
-
-
-            });
-
-
-
-        </script>
-        <div id="demo"></div>
     </body>
 </html>
