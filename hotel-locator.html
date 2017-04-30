@@ -15,19 +15,24 @@
                 <p><a href="#" ng-show="hotel_detail" ng-click="cleanDetail()" style="margin-left:40%">Return</a></p>
             </div>
             <div ng-hide="hotel_detail" id="hotel" ng-repeat="hotel in hotel_list">
-                <!-- Each issue should be rendered with the following template -->
                 <div>
-                    <h3> <!-- If status === Unresolved -->
-                        <spam ng-click="searchDetails(hotel.id)" ng-bind="hotel.name"></spam>
+                    <h3>
+                        <spam ng-click="searchDetails(hotel.id)" ng-bind="hotel.name" style="cursor:pointer"></spam>
                     </h3>
-                    <p>{{hotel.name}} - {{hotel.rating}}</p>
+                    <div style="float:left; width:100%">
+                        <div style="float:left; width:10%">
+                            <img src="{{hotel.photo}}" />
+                        </div>
+                        <div style="float:left; width:90%">
+                            <p style="padding-left:2%">{{hotel.name}} - {{hotel.rating}}</p>
+                        </div>
+                    </div>
                     <hr />
                 </div>
             </div>
             <div ng-show="hotel_detail" id="hotel-detail">
-                <!-- Each issue should be rendered with the following template -->
                 <div>
-                    <h3> <!-- If status === Unresolved -->
+                    <h3>
                         <spam ng-bind="hotel_detail.name"></spam>
                     </h3>
                     <p>
@@ -40,12 +45,13 @@
                               <img src="{{review.profile_photo_url}}" />
                           </div>
                           <div style="float:left; width:90%">
-                              <spam>
+                              <spam  style="padding-left:2%">
                                 {{review.author_name || "anon"}}, rated {{review.rating}} - {{review.relative_time_description}}
                               </spam>
-                              <spam ng-bind="review.text"></spam>
+                              <br>
+                              <spam  style="padding-left:2%" ng-bind="review.text"></spam>
                           </div>
-                          </br>
+                          <br>
                         </div>
 
 
