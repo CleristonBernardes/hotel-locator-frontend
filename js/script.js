@@ -3,7 +3,7 @@ var HotelLocatorApp = angular.module('HotelLocatorApp', []);
 HotelLocatorApp.factory('LocatorFactory', ['$http', function ($http) {
 
     function mainInfo(lat, long){
-      var request = $http.get('http://hotelgeolocator.herokuapp.com/nearest?keyword=hotel&lat='+lat+'&long='+long).success(function (response) {
+      var request = $http.get('https://hotelgeolocator.herokuapp.com/nearest?keyword=hotel&lat='+lat+'&long='+long).success(function (response) {
           return response;
       }).error(function (error, status) {
           console.log(error + ", " + status);
@@ -12,7 +12,7 @@ HotelLocatorApp.factory('LocatorFactory', ['$http', function ($http) {
     };
 
     function getDetails(id){
-      var request = $http.get('http://hotelgeolocator.herokuapp.com/details/'+id).success(function (response) {
+      var request = $http.get('https://hotelgeolocator.herokuapp.com/details/'+id).success(function (response) {
           return response;
       }).error(function (error, status) {
           console.log(error + ", " + status);
