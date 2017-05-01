@@ -2,8 +2,8 @@ var HotelLocatorApp = angular.module('HotelLocatorApp', []);
 
 HotelLocatorApp.factory('LocatorFactory', ['$http', function ($http) {
 
-    function mainInfo(lat, long){
-      var request = $http.get('https://hotelgeolocator.herokuapp.com/nearest?keyword=hotel&lat='+lat+'&long='+long).success(function (response) {
+    function getMethod(url_query){
+      var request = $http.get('https://hotelgeolocator.herokuapp.com' + url_query).success(function (response) {
           return response;
       }).error(function (error, status) {
           console.log(error + ", " + status);
@@ -11,13 +11,12 @@ HotelLocatorApp.factory('LocatorFactory', ['$http', function ($http) {
       return request;
     };
 
+    function mainInfo(lat, long){
+      return getMethod('/nearest?keyword=hotel&lat='+lat+'&long='+long);
+    };
+
     function getDetails(id){
-      var request = $http.get('https://hotelgeolocator.herokuapp.com/details/'+id).success(function (response) {
-          return response;
-      }).error(function (error, status) {
-          console.log(error + ", " + status);
-      });
-      return request;
+      return getMethod('/details/'+id);
     };
 
     var factory = {};
